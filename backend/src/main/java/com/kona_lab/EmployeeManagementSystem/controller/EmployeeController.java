@@ -11,10 +11,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kona_lab.EmployeeManagementSystem.exception.ResourceNotFoundException;
 import com.kona_lab.EmployeeManagementSystem.model.Employee;
 import com.kona_lab.EmployeeManagementSystem.repository.EmployeeRepository;
+import com.kona_lab.EmployeeManagementSystem.services.FileuploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,6 +26,9 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
+
+	@Autowired
+	private FileuploadService fileUploadService;
 
     @GetMapping("/employees")
     public List<Employee> getAllEmployees() {
@@ -38,8 +43,10 @@ public class EmployeeController {
         return ResponseEntity.ok().body(employee);
     }
 
-    @PostMapping("/employees")
+     @PostMapping("/employees")
+    //@RequestMapping(value=("/employees"),headers=("content-type=multipart/*"),method=RequestMethod.POST)
     public Object createEmployee(@Valid @RequestBody Employee employee) {
+		//fileUploadService.storeFile(file);
         List<Employee> emailCheck = employeeRepository.findByEmailId(employee.getEmailId());
         List<Employee> mobileNumber = employeeRepository.findByContactNumber(employee.getContactNumber());
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-employee',
@@ -36,6 +37,10 @@ export class CreateEmployeeComponent implements OnInit {
   save() {
     var employee = new FormData();
     employee.append('file',this.employee.profilePicture);
+    const headers = new HttpHeaders({
+      'Content-Type': 'multipart/form-data',
+      Accept: 'application/json'
+    });
     //console.log(this.employee.profilePicture);
     this.employeeService.createEmployee(this.employee)
       .subscribe(data =>   this.gotoList(), error =>  this.message = error.error.text);
