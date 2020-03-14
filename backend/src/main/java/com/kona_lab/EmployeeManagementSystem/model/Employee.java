@@ -47,7 +47,6 @@ public class Employee {
 	}
 
 	@Column(name = "name", nullable = false)
-	//@NotEmpty(message = "Please provide valid name")
 	public String getName() {
 		return name;
 	}
@@ -56,7 +55,6 @@ public class Employee {
 	}
 
 	@Column(name = "email_address", nullable = false, unique = true)
-	//@NotEmpty(message = "Please provide valid email address")
 	public String getEmailId() {
 		return emailId;
 	}
@@ -65,7 +63,6 @@ public class Employee {
 	}
 
 	@Column(name = "contact_number",nullable = false, unique = true)
-	//@NotEmpty(message = "Please provide valid contact number")
 	public String getContactNumber() {
 		return contactNumber;
 	}
@@ -74,7 +71,6 @@ public class Employee {
 	}
 
 	@Column(name = "gender",nullable = false)
-	//@NotEmpty(message = "Please select gender")
 	public String getGender() {
 		return gender;
 	}
@@ -83,7 +79,6 @@ public class Employee {
 	}
 
 	@Column(name = "date_of_birth",nullable = false)
-	//@NotEmpty(message = "Please provide valid date of birth")
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -92,7 +87,6 @@ public class Employee {
 	}
 
 	@Column(name = "profile_picture",nullable = false)
-	//@NotEmpty(message = "Please upload profile picture")
 	public String getProfilePicture() {
 		return profilePicture;
 	}
@@ -126,8 +120,9 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", emailId=" + emailId
-				+ "]";
+		return "Employee [id=" + id + ", name=" + name + ", emailId=" + emailId +
+				", contactNumber="+ contactNumber + ", gender="+ gender + ", dateOfBirth="+ dateOfBirth +
+				", department="+ department + ", presentAddress="+ presentAddress+"]";
 	}
 
 }

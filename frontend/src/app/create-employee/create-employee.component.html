@@ -1,7 +1,7 @@
 <h3>Create Employee</h3>
+<h4 class="alert alert-warning" *ngIf='message'> {{ message }}  </h4> 
 <div class="jumbotron">
-  <div class="container">
-
+  <div class="container">  
     <form enctype="multipart/form-data" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate >
       <div class="row">
         <div class="col-md-6">
@@ -96,8 +96,4 @@
   </div>
 </div>
 
-
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
-</div>
+ 
