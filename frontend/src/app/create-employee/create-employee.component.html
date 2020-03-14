@@ -2,7 +2,7 @@
 <div class="jumbotron">
   <div class="container">
 
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <form enctype="multipart/form-data" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate >
       <div class="row">
         <div class="col-md-6">
 
@@ -53,8 +53,8 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="profilePicture">Profile Picture</label>
-            <input type="text" class="form-control" id="profilePicture" required [(ngModel)]="employee.profilePicture"
-              name="profilePicture"  #profilePicture="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && profilePicture.invalid }" >
+            <input type="file" class="form-control" id="profilePicture" required [(ngModel)]="employee.profilePicture"
+              name="profilePicture"  #profilePicture="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && profilePicture.invalid }" (change)="onFileChanged($event)" >
               <div *ngIf="f.submitted && profilePicture.invalid" class="invalid-feedback">
                 <div *ngIf="profilePicture.errors.required">Profile Picture is required</div>
               </div>

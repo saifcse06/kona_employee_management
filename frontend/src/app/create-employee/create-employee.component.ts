@@ -13,13 +13,18 @@ export class CreateEmployeeComponent implements OnInit {
   employee: Employee = new Employee();
   model: any = {};
   submitted = false;
-
+  selectedFile: File;
+  
   constructor(private employeeService: EmployeeService,
     private router: Router) { }
 
   ngOnInit() {
-    //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model))
   }
+ //Gets called when the user selects an image
+ public onFileChanged(event) {
+  //Select File
+  this.selectedFile = event.target.files[0];
+}
 
   newEmployee(): void {
     this.submitted = false;
@@ -27,6 +32,9 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   save() {
+    var employee = new FormData();
+    employee.append('file',this.employee.profilePicture);
+    console.log(this.employee.profilePicture);
     this.employeeService.createEmployee(this.employee)
       .subscribe(data => console.log(data), error => console.log(error));
     this.employee = new Employee();
@@ -35,7 +43,6 @@ export class CreateEmployeeComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.employee)
     this.save();
   }
 

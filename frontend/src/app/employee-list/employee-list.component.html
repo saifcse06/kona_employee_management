@@ -1,24 +1,57 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
+      <h2>Employee Filter</h2>
+    </div>
+    <div class="panel-body">
+        <form [formGroup]="form" #searchInfo (ngSubmit)="searchForm(searchInfo)">  
+          <div class="row">
+            <div class="col-md-12">    
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" placeholder="Enter name" class="form-control"> 
+                
+               </div>
+               <div class="form-group float-right">
+                  <button class="btn btn-primary ">Search</button>
+                </div>
+           </div>
+          </div>
+         </form>
+    </div>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
       <h2>Employee List</h2>
     </div>
     <div class="panel-body">
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>Name</th> 
             <th>Email</th>
+            <th>Contact Number</th>
+            <th>Gender</th>
+            <th>Date Of Birth</th>
+            <th>Department</th>
+            <th>Language</th>
+            <th>Address</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let employee of employees | async">
-            <td>{{employee.firstName}}</td>
-            <td>{{employee.lastName}}</td>
+            <td>{{employee.name}}</td>
             <td>{{employee.emailId}}</td>
-            <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
-                <button (click)="employeeDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+            <td>{{employee.contactNumber}}</td>
+            <td>{{employee.gender}}</td>
+            <td>{{employee.dateOfBirth}}</td>
+            <td>{{employee.department}}</td>
+            <td>{{employee.programmingLanguage}}</td>
+            <td>{{employee.presentAddress}}</td>
+            <td>
+              <button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
+               <!-- <button (click)="employeeDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">Details</button> -->
+               <button (click)="employeeUpdate(employee.id)" class="btn btn-primary" style="margin-left: 10px">Edit</button>
             </td>
           </tr>
         </tbody>

@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { EmployeeService } from "../employee.service";
 import { Employee } from "../employee";
 import { Router } from '@angular/router';
+import { FormGroup, FormControl , ReactiveFormsModule } from '@angular/forms';  
 
 @Component({
   selector: 'app-employee-list',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class EmployeeListComponent implements OnInit {
 
   employees: Observable<Employee[]>;
+  employee: Employee = new Employee();
 
   constructor(private employeeService: EmployeeService,
     private router: Router) {}
@@ -20,10 +22,23 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit() {
     this.reloadData();
   }
+  form = new FormGroup({  
+    name : new FormControl() 
+  });  
 
-  reloadData() {
+  reloadData(employee = null) {
     this.employees = this.employeeService.getEmployeesList();
   }
+  searchForm(searchInfo)  
+  {  
+        this.employee.name = this.Name.value;    
+        this.reloadData(this.employee);  
+  }  
+  get Name()  
+  {  
+    return this.form.get('name');  
+  }  
+  
 
   deleteEmployee(id: number) {
     this.employeeService.deleteEmployee(id)
@@ -37,5 +52,8 @@ export class EmployeeListComponent implements OnInit {
 
   employeeDetails(id: number){
     this.router.navigate(['details', id]);
+  }
+  employeeUpdate(id:number){
+    this.router.navigate(['update', id]);
   }
 }

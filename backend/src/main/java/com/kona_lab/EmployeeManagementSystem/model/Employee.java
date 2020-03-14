@@ -55,7 +55,7 @@ public class Employee {
 		this.name = name;
 	}
 
-	@Column(name = "email_address", nullable = false)
+	@Column(name = "email_address", nullable = false, unique = true)
 	//@NotEmpty(message = "Please provide valid email address")
 	public String getEmailId() {
 		return emailId;
@@ -64,7 +64,7 @@ public class Employee {
 		this.emailId = emailId;
 	}
 
-	@Column(name = "contact_number",nullable = false)
+	@Column(name = "contact_number",nullable = false, unique = true)
 	//@NotEmpty(message = "Please provide valid contact number")
 	public String getContactNumber() {
 		return contactNumber;
@@ -129,5 +129,5 @@ public class Employee {
 		return "Employee [id=" + id + ", name=" + name + ", emailId=" + emailId
 				+ "]";
 	}
-	
+
 }
